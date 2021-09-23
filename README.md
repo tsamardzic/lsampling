@@ -407,30 +407,4 @@ Size (based on entropy variation estimation)
 - Prefer good estimates over good performance  
   
 
-  TODOs
-
-- good reminder, better not stay too long
-- mention that people don't have to read
-- mention the project, make it an outline
-- how big samples range of numbers
-- image support for subword tokenization
-- explaing why lupya is OK
-- Tweet -> tweeter
-- mention it's indo-european, put bantu
-- add WALS labels
-- start with lines
-- morpholopgy chapters
-- genres 
-- text data labelsdifferent dome, explain colors
-
-
-https://arxiv.org/pdf/2004.06748.pdf
-
-https://www.jmlr.org/papers/volume7/demsar06a/demsar06a.pdf
-
-https://onlinelibrary.wiley.com/doi/10.1111/cogs.12088
-
-https://www.degruyter.com/document/doi/10.1515/lity.1998.2.3.263/html
-
-
 
