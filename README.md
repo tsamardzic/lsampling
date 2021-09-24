@@ -2,7 +2,7 @@
 # Language sampling
 
 SIGTYP lecture series <br />
-Tanja Samardžić <br />
+Tanja Samardžić (University of Zurich) <br />
 24.09.2021
 
 
@@ -16,10 +16,10 @@ Tanja Samardžić <br />
 ### Overview
 
 - General sampling refresh  
-- Linguistics vs. NLP
+- The purpose of sampling in linguistics and NLP
 - Describing languages for stratified sampling
 - Describing texts (data) for stratified sampling
-- MorphDiv project: sampling texts for the WALS 100LC
+- MorphDiv project: sampling texts for 100 languages (WALS 100LC)
 - How-to
 
 ---
@@ -29,7 +29,7 @@ Tanja Samardžić <br />
 
 ### 1. Sampling basics
 
-Whenever we perform an experiment to test a model or a hypothesis, we need to decide what data to include. In NLP and linguistics, this means selecting a number of **languages** and a number of examples (sounds, words, utterances, texts) from each language. In this lecture, we will consider **texts** to be sampling examples.   How do we take this decision?
+Whenever we perform an experiment to test a model or a hypothesis, we need to decide what data to include. In linguistics and NLP, this means selecting a number of **languages** and a number of examples (sounds, words, utterances, texts) from each language. In this lecture, we will consider **texts** to be sampling examples.   How do we take this decision?
 
 Good samples should represent the whole population that we want to study or model. 
 
@@ -56,7 +56,7 @@ Good samples should represent the whole population that we want to study or mode
 
 Samples can be more stratified. This is, for instance, what is often done: 
 
-> Enumerate all kinds (groups, classes) of languages, then select N kinds randomly. For each of the selected kinds, enumerate all languages and select Mi languages randomly (M is proportional to the size of the group). For each selected language, enumerate all the text and select N texts randomly.  
+> Enumerate all kinds (groups, classes) of languages, then select N kinds randomly. For each of the selected kinds, enumerate all languages and select M<sub>i</sub> languages randomly (M is proportional to the size of the group). For each selected language, enumerate all the text and select N texts randomly.  
 
 
 Stratified sampling is a really good trick for representing the population well in a small sample, but for it to work, we need to know our **strata**, that is what kinds of languages and texts there are.  
@@ -72,21 +72,25 @@ Stratified sampling is a really good trick for representing the population well 
 
 #### in linguistics?
 
-The goal of linguistics is to find out how **language (= all languages!)** works. For instance, it has been shown that languages used in more isolated communities, with fewer speakers and fewer adult learners tend to have long and complex words (Lupyan and Dale 2010, Nichols 2013, Bentz and Winter 2013). 
+The goal of linguistics is to find out how **language (= all languages!)** works. For instance, one of my favourite topics is **language adaptation**, which offers some explanations of the differences in how languages organise words (morphological diversity). Some languages tend to be *splitters*, while others are **lumpers** (to borrow the terms from [Regier et al. 2016](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0151138)). Splitters have short and simple words (as in English), while lumpers have long and complex words. The work on language adaptation (e.g. [Lupyan and Dale 2010](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0008559), Nichols 2013[^1], [Bentz and Winter 2013](https://brill.com/view/journals/ldc/3/1/article-p1_1.xml)) shows that splitters are found in more interactive communities, while lumpers tend to be associated with more isolated communities. 
 
-It is evident that testing such hypotheses requires diverse samples and a good representation of the whole language population. Bias samples have been shown already to lead to wrong conclusions. For instance, Hay and Bauer (2007) found a correlation between population size and language phonetic inventory, but Moran et al. (2011) show that this correlation was due to a biased sample. Correcting for the identified bias left little support for the correlation. 
+
+<img src="figures/split_lump.png" alt="split lump" width="650"/>
+
+
+It is evident that testing such hypotheses requires diverse samples and a good representation of the whole language population. Such studies typically include hundreds of languages, but big samples do not ensure good generalisations. A good illustration of this fact is the controversy around the correlation between **phoneme inventory** and the **population size**. [Hay and Bauer (2007)](https://www.jstor.org/stable/40070846) found a positive correlation, but [Moran et al. (2011)](https://www.jstor.org/stable/23357556) reanalysed the data and found little evidence for the correlation. In short, it turned out that the correlation observed across the whole sample did not hold in smaller sub-samples.  
 
 
 #### in NLP?
 
 The ultimate goal of NLP applications is to assign a correct label (or representation) Y to any utterance X in any language.
 
-Suppose we encounter a short text X (e.g. a Tweeter message), here are some Ys that we want to get right with NLP:
+Suppose we encounter a short text X (e.g. a Twitter message), here are some Ys that we want to get right with NLP:
 
-- Is X positive or negative? &nbsp; &nbsp; &nbsp; &nbsp; Y = {positive, negative, neutral}
-- What is the topic of X? &nbsp; &nbsp; &nbsp; &nbsp; Y = {politics, sport, music, ...}
-- In what language is X? &nbsp; &nbsp; &nbsp; &nbsp; Y = {Abkhaz, Acoma, Alamblak, ...}
-- What is the translation of X in a language I know?  &nbsp; &nbsp; &nbsp; &nbsp; Y = translated X
+- Is X positive or negative? &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:orange">Y = {positive, negative, neutral}</span>
+- What is the topic of X? &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:orange">Y = {politics, sport, music, ...}
+- In what language is X? &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:orange">Y = {Abkhaz, Acoma, Alamblak, ...}
+- What is the translation of X in a language I know?  &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:orange">Y = translated X
  
 
 Typically, for each Y, we have a trained **model** that outputs it once we give it X as input. This model is trained on a **sample** of texts. Our X will come from a **population** that our model is supposed to get right. 
@@ -101,12 +105,18 @@ In theory, all trained models should work for all languages: we can train the sa
 
 #### in both?
 
-The problem is that we cannot design models without assuming some properties of the particular language with which we are working, as convincingly shown by [Bender (2011)](https://journals.linguisticsociety.org/elanguage/lilt/article/download/2624/2624-5403-1-PB.pdf). For instance, thinking that words are the units of processing -- something we have been doing for decades before subword tokenisation became popular -- is already an assumption about how languages are structured. It is OK to assume this if words are relatively short and simple. But words are not short and simple in most of the languages so we need to give up this assumption (which is what actually happened). 
+The problem is that we cannot design models without assuming some properties of the particular language with which we are working, as convincingly shown by [Bender (2011)](https://journals.linguisticsociety.org/elanguage/lilt/article/download/2624/2624-5403-1-PB.pdf). For instance, lets look at the case of text **tokenisation**. 
+
+ Segmenting text into words  -- something we had been doing for decades before subword tokenisation became popular -- is driven by a hidden assumption about the structure of language. If we spell out this assumption, it would be something like this:
+
+> Words are atomic units of language. 
+
+It is quite OK to assume this if words are relatively short and simple. But words are not short and simple in most of the languages so we need to give up this assumption, which is what actually happened when we moved to subword segmentation. This move opened up new questions regarding the granularity level: what subwords? Although we still don't know the answer, the systems are working better at arbitrary levels.  
 
 <img src="figures/subword_options.png" alt="tokenisation optins" width="650"/>
 
 
-In order to be more objective, our samples need to represent somehow **linguistic diversity**, that is different kinds of languages, in practically everything we do. Diverse samples help us avoid assumptions that don't hold. For instance, subword tokenisation was introduced in order to deal with long and complex words, but it turned out to be a better representation for all languages.  If we never thought about languages with long and complex words, we might have never found this out. 
+In order to be more objective, our samples need to represent, as much as possible **linguistic diversity**, that is different kinds of languages, both in linguistics and NLP. Diverse samples help us avoid assumptions that don't hold and do better. For instance, subword tokenisation was introduced in order to deal with long and complex words, but it turned out to be a better representation for all languages.  If we never thought about languages with long and complex words, we might have never found this out. 
 
 
 
@@ -122,7 +132,7 @@ In order to be more objective, our samples need to represent somehow **linguisti
 
 ### 3. Kinds of languages
 
- Describing different kinds of languages is often considered to be the main task of **linguistic typology**. This is a very hard task and, despite hundreds of years of efforts, still far from completed. The reason for this is that it is very hard to find the terms (categories) for describing languages. When describing physical objects (and beings), we can measure their height, weight, temperature, volume, etc. What do we measure in order to describe languages? 
+ Describing different kinds of languages is often considered to be the main task of **linguistic typology**. This is a very hard task and, despite hundreds of years of efforts, still far from completed. The reason for this is that it is very hard to find the terms (categories) for describing languages in a comparable way ([Haspelmath 2007](https://zenodo.org/record/1133882/export/geojson#.YU3Sey0RrfY)). When describing physical objects (and beings), we can measure their height, weight, temperature, volume, etc. What do we measure in order to describe and compare languages? 
 
  Here is a recent classification of languages by [Joshi et al. (2020)](https://aclanthology.org/2020.acl-main.560.pdf)
 
@@ -152,7 +162,7 @@ Instead, we tend to describe languages in terms of their relation to other langu
 #### Genealogical features
 
 
-<img src="figures/phyl_tree.png" alt="phylogenetic" width="650"/>
+<img src="figures/Phyl_tree.png" alt="phylogenetic" width="650"/>
 
 Source:
 
@@ -168,15 +178,16 @@ The most common measure for describing languages is **genealogical relatedness**
 > Latin: mater <br />
 > Greek: meter <br />
 
-The distance between two languages is measured as the number of cognates they share. It something like trying to guess who is whose cousin (and how closely related) looking at who resembles to whom. 
+The distance between two languages is measured as the number of cognates they share. It is  something like trying to guess who is whose cousin (and how closely related) looking at who resembles whom. 
 
+
+When using phylogenetic trees for describing languages, we assume that closely related languages are similar. The fact that some language belongs to a certain group implies a set of properties (those shared by its group, usually not explicitly listed). We can group languages at different levels of granularity. However, the level that is predominately used is that of **family** (only one group in the tree above).
 
 <img src="figures/sample_famil.png" alt="famil-classes" width="650"/>
 
 
 <br />
 
-When using phylogenetic trees for describing languages, we assume that closely related languages are similar. The fact that some language belongs to a certain group implies a set of properties (those shared by its group, usually not explicitly listed). We can group languages at different levels of granularity. However, the level that is predominately used is that of **family** (only one group in the tree above).
 
 Some quotes:
 
@@ -198,12 +209,11 @@ Some quotes:
 
 #### Grammar features 
 
-- **[WALS features](https://wals.info/feature)** 
+Second most common approach is to embed languages in a space whose dimensions correspond to **[WALS features](https://wals.info/feature)**, 
 
 <img src="figures/sample_space.png" alt="featues" width="700"/>
 
 <br />
-
 
 
 > **26A**  Prefixing vs. Suffixing in Inflectional Morphology
@@ -227,10 +237,11 @@ Some quotes:
 
 <br />
 
+Once in a space, languages can be clustered into groups which need to be represented in a sample. This is rarely done in NLP (WALS features are used for other purposes), but some linguistic samples are constructed in a similar way ([Moran et al. 2016](https://aclanthology.org/L16-1700/)).  
 
 #### Text features 
 
-- **Word length**
+Text corpora can also bring some information useful for describing languages. A really simple metric easy to compute is **word length**
 
 
 <img src="figures/sample_wlength.png" alt="word-length" width="400"/>
@@ -240,27 +251,30 @@ Some quotes:
 
 <br />
 
-E.g. SIGMORPHON languages, Wiki texts:
+For instance, median word length for the languages in the [CoNLL-SIGMORPHON 2018 Shared Task](https://sigmorphon.github.io/sharedtasks/2018/), calculated on Wiki texts looks like this:
 
 <img src="figures/mwl_wiki.jpg" alt="mwl-wiki" width="400"/>
 
 
 <br />
 
-<br />
-
-- **Text complexity** -> **Entropy**
-
-<img src="figures/sample_H.png" alt="entropy-classes" width="450"/>
-
+It seems like this value is symmetrically distributed across languages, which I think is an interesting observation in itself. In any case, we can take this distribution and split the languages into bins for stratified sampling.   
 
 <br />
 
+**Text complexity** is a quantity that is much more often discussed as a feature of languages, typically expressed using some measure of **entropy**. Here is how unigram entropy is distributed over the same languages as above. The shape of this distribution is rather different, but we know that word length and unigram entropy are rather strongly correlated.
 
-E.g. SIGMORPHON languages, Wiki texts:
 
 <img src="figures/entropy_distr.png" alt="entropy-distr" width="350"/>
 
+
+
+<br />
+
+ 
+One can also define language groups using text entropy as a comparable description:
+
+<img src="figures/sample_H.png" alt="entropy-classes" width="400"/>
 
 
 <br />
@@ -270,24 +284,31 @@ E.g. SIGMORPHON languages, Wiki texts:
 
 #### Grammar vs. text features 
 
+One of the main objections to using text features for describing languages is that they are not representative of languages.
 
->  <img src="figures/Corr_WALS.png" alt="grammar-text" width="500"/>
+> Text &ne; language!  
 
-Source: [Bentz et al.](https://www.aclweb.org/old_anthology/W/W16/W16-4117.pdf)
+We have actually tested this claim ([Bentz et al.](https://www.aclweb.org/old_anthology/W/W16/W16-4117.pdf)) and found quite strong evidence against it.  
 
+ <img src="figures/Corr_WALS.png" alt="grammar-text" width="600"/>
+
+This graph shows the correlation strength between four different text measures (unigram entropy is the green line) on one side and a set of morphological features from WALS on the other. We can see that the correlation becomes really strong when enough WALS features are available. The correlation is weak when only a few WALS features are available. 
 
 <br />
 
 
 #### Deeper text features?
 
-- **Subword regularity**
+In the current work, we are looking for better text representations obtained using NLP. We presented some ideas and experiments in the SIGTYP workshop earlier this year. You might remember these two talks:
+
+
+- X. Gutierrez is looking into the properties of subword units obtained with BPE, describing the languages in terms of subword **idosyncrasy** vs. **productivity**. 
 
 [<img src="figures/ximena.png" alt="ximena-video" width="500"/>](https://www.youtube.com/watch?v=jsPiDgKStnY)
 
+<br />
 
-- **Subword geometry** 
-
+- O. Sozinova has developed the notion of **subword geometry** as a framework for a zoomed-out description of languages according to the geometric shape of their words. 
 
 [<img src="figures/olga.png" alt="olga-video" width="500"/>](https://www.youtube.com/watch?v=jy6931sVOxE&t=349s)
 
@@ -304,10 +325,9 @@ Source: [Bentz et al.](https://www.aclweb.org/old_anthology/W/W16/W16-4117.pdf)
 
 #### Genres and topics
 
+NLP work on domain adaptation usually addresses this kind of diversity, but it is not the standard in the field to cover multiple domains. The same can be said for linguistics: there is work on what is called *functional variation*, but it is rarely related to sampling, which would look something like this:
 
 <img src="figures/sample_genres.png" alt="genre-classes" width="450"/>
-
-
 
 
 <br />
@@ -316,34 +336,39 @@ Source: [Bentz et al.](https://www.aclweb.org/old_anthology/W/W16/W16-4117.pdf)
 
 #### Regional variation 
 
+
+Finally, we should not forget about regional variation, which becomes especially important in non-standard language, but it affect all genres. Many expressions differ considerably depending on the geographic area, even if the language is the same.  
+
 <img src="figures/francophone_europe.png" alt="francophone" width="450"/>
 
 
 <br />
 
-<br />
+Following the same logic, we can split individual languages regionally, something like this (for French): 
 
 <img src="figures/sample_french.png" alt="french-classes" width="450"/>
 
 
 #### Data sets
 
-What we do:
+Recently, multiple benchmarks (and data sets) have become fashionable in NLP. This is great from the sampling point of view, but it could be better.  
+
+What we do most of the time (apart form the work on domain adaptation) is to train and test on the same data set, something like this:
 
 <img src="figures/sample_text1.png" alt="in-domain" width="250"/>
 
 
 <br />
 
-<br />
 
-
-What we should do:
+What we could do is train on one and test on another domain all the time:
 
 <img src="figures/sample_text2.png" alt="cross-domain" width="250"/>
 
 
 <br />
+
+Of course, this would make the comparison between the models more complicated, but it would provide better estimates of the performance.  
 
 <br />
 
@@ -355,16 +380,24 @@ What we should do:
 
 ### 5. The MorphDiv 100LC sample 
 
-SNSF project
+**SNSF project**
 
 [Non-randomness in Morphological Diversity: A Computational Approach Based on Multilingual Corpora](https://www.spur.uzh.ch/en/departments/research/textgroup/MorphDiv.html)
+
+
+Our goal is to contribute to the study of **language adaptation** and one important component is sampling. 
 
 <img src="figures/morph_div.png" alt="morph-div" width="750"/>
 
 
 <br />
 
+We want to be able to derive text descriptions of many languages and study their relationship with potential adaptation processes. For illustration, this graph shows a comparison of two measures, but we would like to be able to compare many different factors with texts as data points.    
+
+
 #### Languages 
+
+To cover diversity, we rely on the [WALS 100LC](https://wals.info/languoid/samples/100) sample and collect text samples for each of the included languages. Currently we have at least some data (that we are allowed to share) for 84 languages. For some more languages, we have the samples, but cannot share them yet (working on that). FInally, we might need to find replacements for a few languages. 
 
 <img src="figures/100lc.png" alt="100lc" width="750"/>
 
@@ -374,7 +407,7 @@ SNSF project
 
 #### Texts
 
-Genres (based on Biber 1991)
+We aim at representing multiple genres using broad categories based on Biber 1991[^2]: 
 
 > - Fiction
 > -  Non-fiction
@@ -395,6 +428,7 @@ Size (based on entropy variation estimation)
 
 <br />
 
+The sample will be freely accessible after the project (from 2022) but we will try to have a first release soon.
 
 <br />
 
@@ -406,5 +440,9 @@ Size (based on entropy variation estimation)
 - Think of within-language diversity: genre, regional variation 
 - Prefer good estimates over good performance  
   
+
+[^1] J. Nichols (2013). "The vertical archipelago: Adding the third dimension to linguistic geography", From the book Space in Language and Linguistics https://doi.org/10.1515/9783110312027.38 (in case you have access)
+
+[^2] D. Biber (1991). Variation across Speech and Writing: https://doi.org/10.1017/CBO9780511621024 (in case you have access)
 
 
