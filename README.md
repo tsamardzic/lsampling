@@ -209,7 +209,7 @@ Some quotes:
 
 #### Grammar features 
 
-Second most common approach is to embed languages in a space whose dimensions correspond to **[WALS features](https://wals.info/feature)**, 
+Second most common approach is to embed languages in a space whose dimensions correspond to **[WALS features](https://wals.info/feature)**.
 
 <img src="figures/sample_space.png" alt="featues" width="700"/>
 
@@ -368,7 +368,7 @@ What we could do is train on one and test on another domain all the time:
 
 <br />
 
-Of course, this would make the comparison between the models more complicated, but it would provide better estimates of the performance.  
+Of course, this would make the comparison between the models more complicated, but it would provide a better estimation of the performance.  
 
 <br />
 
