@@ -435,11 +435,12 @@ The sample will be freely accessible after the project (from 2022) but we will t
 ### 6. Tips for language sampling 
 
 - Think of sampling: what do 1-3 languages tell us about language in general?
-- Use predefined samples for diversity (e.g. ACQDIV 10, WALS 100, WALS 200)
+- Use predefined samples for diversity (e.g. [ACQDIV 10](https://aclanthology.org/L16-1700.pdf), [WALS 100](https://wals.info/languoid), [WALS 200](https://wals.info/languoid/samples/200))
 - Try randomness (e.g. random 20 from WALS 200) 
 - Think of within-language diversity: genre, regional variation 
-- Prefer good estimates over good performance  
+- In NLP, prefer good estimation of the performance over good performance  
   
+  --- 
 
 [^1] J. Nichols (2013). "The vertical archipelago: Adding the third dimension to linguistic geography", From the book Space in Language and Linguistics https://doi.org/10.1515/9783110312027.38 (in case you have access)
 
