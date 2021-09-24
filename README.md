@@ -116,7 +116,7 @@ It is quite OK to assume this if words are relatively short and simple. But word
 <img src="figures/subword_options.png" alt="tokenisation optins" width="650"/>
 
 
-In order to be more objective, our samples need to represent, as much as possible **linguistic diversity**, that is different kinds of languages, both in linguistics and NLP. Diverse samples help us avoid assumptions that don't hold and do better. For instance, subword tokenisation was introduced in order to deal with long and complex words, but it turned out to be a better representation for all languages.  If we never thought about languages with long and complex words, we might have never found this out. 
+In order to be more objective, our samples need to represent, as much as possible **linguistic diversity**, that is different kinds of languages, both in linguistics and NLP. Diverse samples help us avoid assumptions that don't hold. For instance, subword tokenisation was introduced in order to deal with long and complex words, but it turned out to be a better representation for all languages.  If we never thought about languages with long and complex words, we might have never found this out. 
 
 
 
