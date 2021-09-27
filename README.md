@@ -436,7 +436,8 @@ The sample will be freely accessible after the project (from 2022) but we will t
 
 - Think of sampling: what do 1-3 languages tell us about language in general?
 - Use predefined samples for diversity (e.g. [ACQDIV 10](https://aclanthology.org/L16-1700.pdf), [WALS 100](https://wals.info/languoid), [WALS 200](https://wals.info/languoid/samples/200))
-- Try randomness (e.g. random 20 from WALS 200) 
+- Try randomness (e.g. random 20 from WALS 200)
+- Consider text features for language description 
 - Think of within-language diversity: genre, regional variation 
 - In NLP, prefer good estimation of the performance over good performance  
   
