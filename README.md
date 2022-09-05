@@ -52,7 +52,7 @@ Good samples should represent the whole population that we want to study or mode
 
  > Enumerate all languages (population), then select N languages randomly (sample), then for each language, enumerate all the texts (population), then select N texts randomly (sample) <br />
   
-  &nbsp; &nbsp;  **->** &nbsp; &nbsp; Starting to look imaginable, if we get lucky with the languages so that their texts are enumerable (not too many not to few) 
+  &nbsp; &nbsp;  **->** &nbsp; &nbsp; Starting to look imaginable, if we get lucky with the languages so that their texts are enumerable (not too many not too few) 
 
 Samples can be more stratified. This is, for instance, what is often done: 
 
